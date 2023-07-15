@@ -21,6 +21,7 @@ app.post("/signup", passCheck, async (req, res) => {
     } else {
       const user = await userModel.create(req.body);
       user.save();
+      res.status(200).send("user created successfully");
     }
   } catch (error) {
     console.log({ err: error });
