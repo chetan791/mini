@@ -6,9 +6,11 @@ const passCheck = require("./middleware/pass.middleware");
 const validator = require("./middleware/validator.middleware");
 const dotenv = require("dotenv");
 const app = express();
+const cors = require("cors");
 
 dotenv.config();
 app.use(express.json());
+app.use(cors());
 
 //endpoint for signup
 app.post("/signup", passCheck, async (req, res) => {
