@@ -17,12 +17,12 @@ app.post("/signup", passCheck, async (req, res) => {
   const { email } = req.body;
   try {
     const verify = await userModel.findOne({ email: email });
-    if (verify) {
+    if (ver) {
       res.status(400).send("email already exist");
     } else {
       const user = await userModel.create(req.body);
       user.save();
-      res.status(200).send("user created successfully");
+      res.json.send("user created successfully");
     }
   } catch (error) {
     console.log({ err: error });
