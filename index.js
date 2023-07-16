@@ -14,9 +14,10 @@ app.use(express.json());
 
 //endpoint for signup
 app.post("/signup", passCheck, async (req, res) => {
+  const { email } = req.body;
   try {
-    const email = await userModel.findOne(req.body.email);
-    if (email) {
+    const verify = await userModel.findOne({ email: email });
+    if (verify) {
       res.status(400).send("email already exist");
     } else {
       const user = await userModel.create(req.body);
